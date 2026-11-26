@@ -69,6 +69,122 @@ class RetroSoundEngine {
     osc.stop(start + durationSec + 0.01);
   }
 
+  playSlash(): void {
+    const ctx = this.getContext();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    const filter = ctx.createBiquadFilter();
+
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(420, now);
+    osc.frequency.exponentialRampToValueAtTime(80, now + 0.12);
+
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(1800, now);
+    filter.frequency.exponentialRampToValueAtTime(300, now + 0.12);
+
+    gain.gain.setValueAtTime(0.12, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+
+    osc.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start(now);
+    osc.stop(now + 0.13);
+  }
+
+  playStokeFire(): void {
+    const ctx = this.getContext();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+
+    // Warm burst
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(110, now);
+    osc.frequency.linearRampToValueAtTime(260, now + 0.15);
+    gain.gain.setValueAtTime(0.14, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + 0.23);
+
+    // Crackle pops
+    for (let i = 0; i < 3; i++) {
+      const popDelay = 0.04 + i * 0.06;
+      this.tone(600 + Math.random() * 400, 0.02, popDelay, 'square', 0.04);
+    }
+  }
+
+  playWolfHowl(): void {
+    const ctx = this.getContext();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(380, now);
+    osc.frequency.exponentialRampToValueAtTime(680, now + 0.35);
+    osc.frequency.exponentialRampToValueAtTime(440, now + 0.75);
+
+    gain.gain.setValueAtTime(0.02, now);
+    gain.gain.linearRampToValueAtTime(0.11, now + 0.2);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start(now);
+    osc.stop(now + 0.81);
+  }
+
+  playDroneScan(): void {
+    this.tone(880, 0.05, 0, 'sine', 0.08);
+    this.tone(1320, 0.05, 0.06, 'sine', 0.08);
+    this.tone(1760, 0.08, 0.12, 'sine', 0.09);
+  }
+
+  playPotBubble(): void {
+    this.tone(480, 0.04, 0, 'sine', 0.06);
+    this.tone(620, 0.04, 0.05, 'sine', 0.06);
+    this.tone(540, 0.05, 0.11, 'sine', 0.05);
+  }
+
+  playMonsterHit(): void {
+    const ctx = this.getContext();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(220, now);
+    osc.frequency.exponentialRampToValueAtTime(45, now + 0.16);
+
+    gain.gain.setValueAtTime(0.15, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start(now);
+    osc.stop(now + 0.17);
+  }
+
+  playPerimeterAlert(): void {
+    this.tone(310, 0.06, 0, 'sawtooth', 0.05);
+    this.tone(260, 0.08, 0.08, 'sawtooth', 0.06);
+  }
+
   playLockTask(): void {
     this.tone(240, 0.06, 0, 'triangle', 0.07);
     this.tone(360, 0.07, 0.05, 'square', 0.05);

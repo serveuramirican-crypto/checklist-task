@@ -93,6 +93,15 @@ export const en = {
   'canvas.burstLevelUp': 'LVL {level}! +{points} SP',
   'canvas.burstReSecured': 'RE-SECURED! +{points} SP',
   'canvas.burstPoints': '+{points} SP!',
+  'canvas.actionStrike': 'Strike / Defend',
+  'canvas.actionStoke': 'Stoke Fire',
+  'canvas.actionWolf': 'Pet Wolf',
+  'canvas.actionDrone': 'Recon Scan',
+  'canvas.actionPot': 'Stir Stew',
+  'canvas.actionWeather': 'Weather: {mode}',
+  'canvas.warmthLabel': 'Camp Warmth',
+  'canvas.defenseLabel': 'Perimeter',
+  'canvas.interactiveHelp': 'Click canvas to defend camp or interact',
 
   // Equipment Summary Cards
   'equip.companionsTitle': 'Companions ({count}/3)',
@@ -386,6 +395,15 @@ export const ar: Record<TranslationKey, string> = {
   'canvas.burstLevelUp': 'مستوى {level}! +{points} SP',
   'canvas.burstReSecured': 'تأمين مجدد! +{points} SP',
   'canvas.burstPoints': '+{points} SP!',
+  'canvas.actionStrike': 'هجوم / دفاع',
+  'canvas.actionStoke': 'إشعال النار',
+  'canvas.actionWolf': 'ملاطفة الذئب',
+  'canvas.actionDrone': 'مسح استطلاعي',
+  'canvas.actionPot': 'تحريك الحساء',
+  'canvas.actionWeather': 'الطقس: {mode}',
+  'canvas.warmthLabel': 'دفء المعسكر',
+  'canvas.defenseLabel': 'المحيط',
+  'canvas.interactiveHelp': 'انقر على المشهد للتفاعل والدفاع',
 
   // Equipment Summary Cards
   'equip.companionsTitle': 'المرافقون ({count}/3)',
